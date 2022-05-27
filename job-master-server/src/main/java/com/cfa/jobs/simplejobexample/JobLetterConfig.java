@@ -40,9 +40,9 @@ public class JobLetterConfig {
     @Bean
     public Step stepOne() {
         LetterReader letterReader = new LetterReader();
-        letterReader.setLetters(initData());
+        letterReader.setLetters(initData().iterator());
         return stepBuilderFactory.get("stepOne")
-                .<List<String>, List<String>>chunk(1)
+                .<String, String>chunk(1)
                 .reader(letterReader)
                 .processor(new SimpleProcessor())
                 .writer(new SimpleWriter())
